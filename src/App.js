@@ -1,23 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
-
+import {BrowserRouter as Router,Routes,Route} from 'react-router-dom'
+import LoginPage from "./components/login/LoginPage"
+import AdminPanel from './components/AdminPanel/AdminPanel';
+import { ToastContainer } from 'react-toastify';
+import UserPanel from './components/UserPanel/UserPanel';
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <ToastContainer/>
+    <Router>
+      <Routes>
+        <Route path='/' element={<UserPanel/>}/>
+        <Route path='/admin/*' element={
+          localStorage.getItem('token')?<AdminPanel/>:<LoginPage/>
+        }/>
+
+      </Routes>
+    </Router>
     </div>
   );
 }

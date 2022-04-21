@@ -1,0 +1,7 @@
+.userPanel{
+    display: flex;
+    height: 100vh;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}

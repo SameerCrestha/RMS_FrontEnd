@@ -1,0 +1,13 @@
+.adminPanel{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+.adminPanel>*{
+    height: 100vh;
+}
+
+.main{
+    width: 100%;
+}

@@ -6,15 +6,12 @@ function NewFood({setOverlay,createFood}) {
     const [price,setPrice]=useState('');
     const buttonClickHandler=useCallback((e)=>{
         e.preventDefault();
-        console.log("called")
         createFood({food_name:foodName,food_category:category,food_price:price}).then(res=>{
             setOverlay(false);
         })
-        // setOverlay(false);
     },[setOverlay,foodName,category,price,createFood])
     return (
         <div className='newFoodOverlay'>
-            
             <form>
                 <div className='title'>Add an item</div>
                 <input className='' placeholder='Food name' onChange={(e)=>setFoodName(e.target.value)} />

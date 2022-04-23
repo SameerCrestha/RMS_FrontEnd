@@ -1,6 +1,7 @@
 import React,{useState,useEffect} from 'react';
 import Table from 'react-bootstrap/Table'
 import './MenuList.css';
+import { Ring } from 'react-awesome-spinners';
 function Section({index,header,items}){
   return(
     <>
@@ -58,7 +59,7 @@ function MenuList(props) {
    getCategories().then(categories=>populateData(categories)).then(data=>setData(data));
   },[])
   return(
-  !data?<div>loading</div>:<Table className='userMenuTable' borderless hover>{data.map((el,index)=><Section index={index} header={el.header} items={el.items}/>)}</Table>
+  !data?<div className='loadingDiv'><Ring/></div>:<Table className='userMenuTable' borderless hover>{data.map((el,index)=><Section index={index} header={el.header} items={el.items}/>)}</Table>
   );
 }
 

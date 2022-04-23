@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import './SideBar.css'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Ring } from 'react-awesome-spinners'
 
 function SideBar(props) {
     const [loaded,setLoaded]=useState(false);
@@ -51,7 +52,7 @@ function SideBar(props) {
             <div className='button'><Link to='/admin/menu'>Menu</Link></div>
             <div className='button'><Link to='/admin/inventory'>Inventory</Link></div>
             <div className="logoutButton button" onClick={()=>{localStorage.clear();window.location.reload(false);}}>Log Out</div>
-        </>:<div>Loading...</div>}
+        </>:<div className='loadingDiv'><Ring/></div>}
         </div>
     );
 }

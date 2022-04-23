@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import Table from './Table';
 import { toast } from 'react-toastify';
+import { Ring } from 'react-awesome-spinners';
 
 function Menu(props) {
     const [loaded,setLoaded]=useState(false);
@@ -116,7 +117,7 @@ function Menu(props) {
     return (
         
         <>
-            {loaded?<Table editFood={editFood} createFood={createFood} setMenuList={setMenuList} deleteFood={deleteFood}  menuList={menuList}/>:<div>loading...</div>}
+            {loaded?<Table editFood={editFood} createFood={createFood} setMenuList={setMenuList} deleteFood={deleteFood}  menuList={menuList}/>:<div className='loadingDiv'><Ring/></div>}
         </>
     );
 }

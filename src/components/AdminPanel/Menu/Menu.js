@@ -20,7 +20,7 @@ function Menu(props) {
     
             fetch(`${baseUrl}//${foodPrefix}/menu-list/`, requestOptions)
             .then(response => response.json())
-            .then(result => {setMenuList(result);setLoaded(true);})
+            .then(result => {setMenuList(sortMenuByCategory(result));setLoaded(true);})
             .catch(error => console.log('error', error));
         },[baseUrl,foodPrefix]
     );
@@ -39,11 +39,11 @@ function Menu(props) {
         };
         function successHandler(result){
             toast.info("Item added succesfully",{autoClose:3000});
-            setMenuList(menuList.push(result));
+            menuList.push(result);
+            setMenuList(sortMenuByCategory(menuList));
         }
-        console.log("i m called")
 
-        fetch(`${baseUrl}//${foodPrefix}/menu/`, requestOptions)
+        return fetch(`${baseUrl}//${foodPrefix}/menu/`, requestOptions)
         .then(response => response.json())
         .then(result =>{successHandler(result)})
         .catch(error => console.log('error', error));
@@ -87,9 +87,32 @@ function Menu(props) {
         .then(result => {getMenuList();toast.success("Menu Updated",{autoClose:1000,position: "top-center",hideProgressBar:true})})
         .catch(error => console.log('error', error));
     }
+    const sortMenuByCategory=useCallback((menu)=>{
+        let tempMenu=[];
+        let tempMenu2=[];
+        let tempCategories=[];
+        //make a list of categories in tempCategories
+        for(let i=0;i<menu.length;i++){
+            if(!tempCategories.includes(menu[i].food_category)){
+                tempCategories.push(menu[i].food_category);
+            }
+        }
+        tempCategories.forEach(category=>{
+            for(let i=0;i<menu.length;i++){
+                if(category===menu[i].food_category){
+                    tempMenu.push(menu[i]);
+                }
+            }
+        })
+        tempMenu.forEach(el=>{
+            tempMenu2.push(el);
+        })
+        return tempMenu2;
+    },[])
     useEffect(()=>{
         getMenuList();
     },[getMenuList]);
+
     return (
         
         <>

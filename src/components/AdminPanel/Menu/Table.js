@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import './Table.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
+import NewFood from './NewFood';
 
 function Row({item,index,setMenuList,menuList,setRerender,editFood,deleteFood}){
     const [changed,setChanged]=useState(false);
     const [foodName,setFoodName]=useState(item.food_name);
     const [foodCategory,setFoodCategory]=useState(item.food_category);
     const [foodPrice,setFoodPrice]=useState(item.food_price);
+    
     function trashButtonHandler(){
         deleteFood(item);
     }
@@ -29,22 +30,23 @@ function Row({item,index,setMenuList,menuList,setRerender,editFood,deleteFood}){
     );
 }
 
-function Header({createFood,deleteFood,setMenuList,menuList}){
-    const defaultFood={food_name:"noname",food_category:"none",food_price:0}
+function Header({createFood,deleteFood,setMenuList,menuList,setOverlay}){
     return(
         <div className='header'>
         <div>Name</div>
         <div>Category</div>
         <div>Price</div>
-        <FontAwesomeIcon className="addButton" icon="fa-plus"  onClick={()=>{createFood(defaultFood)}}/>
+        <FontAwesomeIcon className="addButton" icon="fa-plus"  onClick={()=>{setOverlay(true)}}/>
         </div>
     );
 }
 function Table({createFood,menuList,deleteFood,editFood,setMenuList}) {
     const [rerender,setRerender]=useState(true);
+    const [overlay,setOverlay]=useState(false);
     return (
         <div className='menuTable'>
-            <Header createFood={createFood} menuList={menuList} deleteFood={deleteFood} setMenuList={setMenuList}/>
+            {overlay?<NewFood setOverlay={setOverlay} createFood={createFood}/>:<></>}
+            <Header createFood={createFood} setOverlay={setOverlay} menuList={menuList} deleteFood={deleteFood} setMenuList={setMenuList}/>
            {(menuList&&rerender)?menuList.map((el,index)=>
                 <Row item={el} key={el.food_id} menuList={menuList} editFood={editFood} setRerender={setRerender} index={index} setMenuList={setMenuList} deleteFood={deleteFood}/>
            ):"Nothing to show"} 

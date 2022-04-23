@@ -1,18 +1,20 @@
 import React from 'react';
+import MenuList from './MenuList/MenuList';
 import './UserPanel.css'
+
 function UserPanel(props) {
+    
     return (
         <div className='userPanel'>
-            <div className='menu'>
+            <div className='order'>
         asdk
         ads
         f
         asdf
         f
             </div>
-            <div className='order'>
-            dsaf
-            asdfsadf
+            <div className='menu'>
+            <MenuList/>
             </div>
         </div>
     );

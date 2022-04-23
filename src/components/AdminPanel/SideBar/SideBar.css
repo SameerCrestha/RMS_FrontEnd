@@ -13,6 +13,9 @@
     text-decoration: none;
     color: inherit;
 }
+.sideBar a:hover{
+    color: inherit;
+}
 .sideBar>div{
     width: 100%;
     text-align: center;
@@ -22,6 +25,7 @@
 }
 .sideBar .button:hover{
     background-color:rgb(100, 145, 159) ;
+    cursor: pointer;
 }
 .sideBar .logoutButton{
     margin-top:auto ;

@@ -16,8 +16,8 @@ function SideBar(props) {
             setLoaded(true);
         }
         const failureHandler=(result)=>{
-            toast.error(result.detail,{autoClose:3000});
-            setTimeout(()=>{localStorage.clear();window.location.reload(false);},3000);
+            toast.error(result.detail,{autoClose:3000,hideProgressBar:true});
+            setTimeout(()=>{localStorage.clear();window.location.reload(false);},1000);
 
         }
         var myHeaders = new Headers();

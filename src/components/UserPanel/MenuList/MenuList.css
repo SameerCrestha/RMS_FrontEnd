@@ -1,0 +1,14 @@
+.userMenuTable thead{
+    font-family: 'Ms Madi', cursive;
+    font-size: 28px;
+}
+
+.userMenuTable thead:not(:first-child):before{
+    content: "";
+    display: block;
+    height: 20px;
+}
+.userMenuTable tbody{
+    font-weight: 300;
+    background-color: rgb(232, 230, 230);
+}

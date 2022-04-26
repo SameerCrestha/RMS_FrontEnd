@@ -26,7 +26,6 @@ function MenuList(props) {
         orderList.splice(itemIndex,1);
         setOrderList(orderList);
       }
-      console.log(orderList)
     },[confirmed,itemIndex]);
     
     return (<tr key={item.food_id}>

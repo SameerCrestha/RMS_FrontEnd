@@ -2,23 +2,57 @@ import React,{useState,useEffect} from 'react';
 import Table from 'react-bootstrap/Table'
 import './MenuList.css';
 import { Ring } from 'react-awesome-spinners';
-function Section({index,header,items}){
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+function MenuList(props) {
+  const [orderList,setOrderList]=useState([]);
+  function Row({item}){
+    const [count,setCount]=useState(0);
+    const [confirmed,setConfirmed]=useState(false);
+    const [itemIndex,setItemIndex]=useState(null);
+    function confirmButtonHandler(){
+      setConfirmed(true);
+      let temp={food:item,quantity:count};
+      orderList.push(temp);
+      setItemIndex(orderList.indexOf(temp));
+      setOrderList(orderList);
+    }
+    useEffect(()=>{
+      count?setConfirmed(false):setConfirmed(true);
+    },[count])
+    useEffect(()=>{
+      //remove item from orderList if confirmed false
+      if(!confirmed) {
+        orderList.splice(itemIndex,1);
+        setOrderList(orderList);
+      }
+      console.log(orderList)
+    },[confirmed,itemIndex]);
+    
+    return (<tr key={item.food_id}>
+            <td>{item.food_name}</td>
+            <td>Rs {item.food_price}</td>
+            <div className='counter'>
+            <FontAwesomeIcon className='countButton' icon="fa-plus" onClick={()=>{setCount(count+1)}}/>
+            <div className='counterText'>{count}x</div>
+            <FontAwesomeIcon className='countButton' icon="fa-minus" onClick={()=>count?setCount(count-1):""}/>
+            <FontAwesomeIcon className={'countButton addButton '+(confirmed?"disable":"")} icon="fa-check" onClick={confirmButtonHandler}/>
+            </div>
+          </tr>)
+  }
+  function Section({index,header,items}){
   return(
     <>
       <thead><tr><td>{header}</td></tr></thead>
       <tbody>
         {items.map(el=>
-          <tr key={el.food_id}>
-            <td>{el.food_name}</td>
-            <td>Rs {el.food_price}</td>
-          </tr>
+          <Row item={el}/>
         )}
       </tbody>
     </>
   );
 
-}
-function MenuList(props) {
+  }
   const[data,setData]=useState();//data format:[{header:"header",items:[{food_name:"momo",food_price:100},{}]},{}]
   useEffect(()=>{
     const baseUrl=process.env.REACT_APP_BASE_URL;

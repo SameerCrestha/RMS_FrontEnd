@@ -1,3 +1,11 @@
+.userMenuTable{
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none;
+}
 .userMenuTable thead{
     font-family: 'Ms Madi', cursive;
     font-size: 28px;
@@ -11,4 +19,45 @@
 .userMenuTable tbody{
     font-weight: 300;
     background-color: rgb(232, 230, 230);
+}
+.userMenuTable .counterText{
+    position: relative;
+    top:-0px;
+    display: inline-block;
+    padding: 0 10px;
+}
+
+.userMenuTable .countButton{
+    display: inline-block;
+    cursor: pointer;
+    padding: 5px;
+    background-color: rgb(242, 241, 241);
+    border-radius: 40%;
+    box-shadow: 1px 1px 2px #888888;
+    transition: transform 0.2s ease;
+    transition: box-shadow 0.2s ease;
+}
+
+.userMenuTable .countButton:active{
+    transform: translate(0.5px,0.5px);
+    box-shadow: none;
+}
+
+.userMenuTable .counter{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+}
+
+.userMenuTable .addButton{
+    margin-left: 20px;
+}
+
+.userMenuTable .disable{
+    transform: translate(0.5px,0.5px);
+    box-shadow: none;
+    cursor: auto;
+    pointer-events: none;
+    filter: opacity(0.2);
 }

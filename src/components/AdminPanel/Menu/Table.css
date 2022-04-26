@@ -1,8 +1,9 @@
 .menuTable{
     display: flex;
+    position: relative;
     flex-direction: column;
     justify-content: flex-start;
-    padding:6px;
+   
     min-width: 649px;
 }
 .menuTable .row ,.menuTable .header{
@@ -21,11 +22,17 @@
     padding: 10px;
 }
 .menuTable .header{
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 10;
     border-bottom: 2px solid black;
-    margin-bottom: 4px;
+    /* margin-bottom: 4px; */   
 }
 .menuTable .header>*{
     padding: 0 4px;
+    display: flex;
+    align-items: center;
 }
 
 .menuTable .addButton{

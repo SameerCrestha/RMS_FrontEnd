@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import './NewFood.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 function NewFood({setOverlay,createFood}) {
     const [foodName,setFoodName]=useState('');
     const [category,setCategory]=useState('')
@@ -11,8 +12,10 @@ function NewFood({setOverlay,createFood}) {
         })
     },[setOverlay,foodName,category,price,createFood])
     return (
+
         <div className='newFoodOverlay'>
             <form>
+                <FontAwesomeIcon className='closeButton' icon="fa-xmark" onClick={()=>setOverlay(false)}/>
                 <div className='title'>Add an item</div>
                 <input className='' placeholder='Food name' onChange={(e)=>setFoodName(e.target.value)} />
                 <input className='' placeholder='Category' onChange={(e)=>setCategory(e.target.value)} />

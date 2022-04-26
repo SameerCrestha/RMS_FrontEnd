@@ -9,23 +9,27 @@
 }
 
 .newFoodOverlay form{
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: aliceblue;
+    padding: 0 10px;
 }
 
 .newFoodOverlay input{
     margin: 25px 0;
     padding: 6px;
     width:250px;
-    background-color: rgb(204, 227, 235);
     outline: none;
     border: none;
+    background-color: rgb(247, 250, 253);
+    border: 0.2px solid black;
 }
 
 .newFoodOverlay button{
-    color: #fff !important;
+    color: white;
     text-transform: uppercase;
     text-decoration: none;
     background: #5d91eb;
@@ -36,10 +40,18 @@
     margin-bottom: 5px;
 }
 .newFoodOverlay .title{
-    font-size: 22px;
+    font-size: 22px;;
     background-color: rgb(217, 227, 236);
     width: 100%;
     text-align: center;
     padding: 5px;
     box-sizing: border-box;
+}
+
+.newFoodOverlay .closeButton{
+    color: black;
+    height: 25px;
+}
+.closeButton:hover{
+    color: red;
 }

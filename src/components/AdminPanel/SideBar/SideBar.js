@@ -4,8 +4,10 @@ import './SideBar.css'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Ring } from 'react-awesome-spinners'
+import { useNavigate } from 'react-router';
 
 function SideBar(props) {
+    let navigate=useNavigate();
     const [loaded,setLoaded]=useState(false);
     var profile=useRef();
     const fetchProfile=useCallback(()=>{
@@ -43,15 +45,16 @@ function SideBar(props) {
     return (
         <div className='sideBar'>
         {loaded?<>
-            <div>
+            <div className='profileInfo'>
             Logged in as {profile.current.username+'\n'} 
             Role:{profile.current.staff}
             </div>
             <div className='button'><Link to='/admin'>Home</Link></div>
-            <div className='button'><Link to='/admin/order'>Order</Link></div>
-            <div className='button'><Link to='/admin/menu'>Menu</Link></div>
-            <div className='button'><Link to='/admin/inventory'>Inventory</Link></div>
-            <div className="logoutButton button" onClick={()=>{localStorage.clear();window.location.reload(false);}}>Log Out</div>
+            {profile.current.staff.toLowerCase()==="cashier"?<div className='button'><Link to='/admin/cashierorder'>Orders</Link></div>:""}
+            {profile.current.staff.toLowerCase()==="admin"?<div className='button'><Link to='/admin/menu'>Menu</Link></div>:""}
+            {profile.current.staff.toLowerCase()==="kitchen staff"?<div className='button'><Link to='/admin/kitchenorder'>Orders</Link></div>:""}
+            {profile.current.staff.toLowerCase()==="inventory staff"?<div className='button'><Link to='/admin/inventory'>Inventory</Link></div>:""}
+            <div className="logoutButton button" onClick={()=>{localStorage.clear();navigate('/admin');window.location.reload(false);}}>Log Out</div>
         </>:<div className='loadingDiv'><Ring/></div>}
         </div>
     );

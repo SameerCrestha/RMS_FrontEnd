@@ -2,9 +2,11 @@ import React,{useState} from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import  "./LoginPage.css";
+import { useNavigate } from 'react-router';
 
 
 function LoginPage(props) {
+    const navigate=useNavigate();
     const [username,setUsername]=useState('');
     const [password,setPassword]=useState('');
     const baseUrl=process.env.REACT_APP_BASE_URL;
@@ -14,6 +16,7 @@ function LoginPage(props) {
     }
     const successHandler=(result)=>{
         saveToLocal(result.token);
+        navigate('/admin');
         window.location.reload(false);
     }
     const failurehandler=(result)=>{

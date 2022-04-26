@@ -9,6 +9,10 @@
     height: 100vh;
 }
 
+.sideBar .profileInfo{
+    padding: 20px 0;
+}
+
 .sideBar a{
     text-decoration: none;
     color: inherit;

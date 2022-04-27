@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import  "./LoginPage.css";
 import { useNavigate } from 'react-router';
-
+import logo2 from "../../images/logo2.png"
 
 function LoginPage(props) {
     const navigate=useNavigate();
@@ -45,8 +45,9 @@ function LoginPage(props) {
     }
     return (
         <div className='loginPage'>
+            <img className='image' src={logo2} alt="logo majordomo"/>
            <form className='loginForm'>
-            <div className='title'>Login to admin panel</div>
+            <div className='title'>Login to admin/staff portal</div>
                <input type="text" placeholder='Username' onChange={(event)=>setUsername(event.target.value)}/>
                <input className='password' type="password" placeholder='Password' onChange={(event)=>setPassword(event.target.value)}/>
                <button onClick={loginClickHandler}>Login</button>

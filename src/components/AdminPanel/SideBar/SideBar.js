@@ -45,10 +45,8 @@ function SideBar(props) {
     return (
         <div className='sideBar'>
         {loaded?<>
-            <div className='profileInfo'>
-            Logged in as {profile.current.username+'\n'} 
-            Role:{profile.current.staff}
-            </div>
+            <p className='name'> {profile.current.full_name}</p>
+            <p className='role'>{profile.current.staff}</p>
             <div className='button'><Link to='/admin'>Home</Link></div>
             {profile.current.staff.toLowerCase()==="cashier"?<div className='button'><Link to='/admin/cashierorder'>Orders</Link></div>:""}
             {profile.current.staff.toLowerCase()==="admin"?<div className='button'><Link to='/admin/menu'>Menu</Link></div>:""}

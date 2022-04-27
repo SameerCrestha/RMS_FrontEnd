@@ -1,17 +1,15 @@
 .sideBar{
+    font-family: 'Poppins';
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    background-color: rgb(131, 183, 199);
-    color: aliceblue;
+    background-color: #7941FF;
+    color: #F1EAFD;
     width: 200px;
     height: 100vh;
 }
 
-.sideBar .profileInfo{
-    padding: 20px 0;
-}
 
 .sideBar a{
     text-decoration: none;
@@ -21,6 +19,7 @@
     height: 60px;
     align-items: center;
     justify-content: center;
+    border: none;
 }
 .sideBar a:hover{
     color: inherit;
@@ -28,12 +27,12 @@
 .sideBar>div{
     width: 100%;
     text-align: center;
-    
+    background-color: #6F38FF;
     border-bottom: 0.3px solid rgb(46, 43, 43);
     box-sizing: border-box;
 }
 .sideBar .button:hover{
-    background-color:rgb(100, 145, 159) ;
+    background-color:#5C28FF;
     cursor: pointer;
 }
 .sideBar .logoutButton{
@@ -43,4 +42,33 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #6F38FF;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.name{
+    padding: 20px 0;
+    font-weight: bold;
+}
+
+.role{
+    text-decoration: underline;
+}
+.none {
+    color:#F1EAFD;
+    color:#C6A9FF;
+    color:#AF86FF;
+    color:#9D6CFF;
+    color:#8c52ff;
+    color:#844BFF;
+    color:#7941FF;
+    color:#6F38FF;
+    color:#5C28FF;
+
 }

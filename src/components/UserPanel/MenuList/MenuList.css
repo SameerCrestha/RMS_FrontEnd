@@ -24,7 +24,8 @@
     position: relative;
     top:-0px;
     display: inline-block;
-    padding: 0 10px;
+    min-width: 30px;
+    text-align: center;
 }
 
 .userMenuTable .countButton{

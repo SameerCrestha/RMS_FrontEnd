@@ -63,7 +63,7 @@ function OrderList({orderList,setOrdered,setOverlay}){
   
   const[total,setTotal]=useState(0);
   const [note,setNote]=useState('');
-  const [table,setTable]=useState(0);
+  const [table,setTable]=useState(1);
   function postOrder(req){
     const baseUrl=process.env.REACT_APP_BASE_URL;
     const orderPrefix=process.env.REACT_APP_ORDER_PREFIX;
@@ -96,7 +96,7 @@ function OrderList({orderList,setOrdered,setOverlay}){
     <div className='orderList'>
     <div><label for="table">Select your table:</label>
     <select id="table" name="table" onChange={e=>{setTable(e.target.value)}}>
-      <option value={1}>1</option>
+      <option value={1} selected>1</option>
       <option value={2}>2</option>
       <option value={3}>3</option>
       <option value={4}>4</option>

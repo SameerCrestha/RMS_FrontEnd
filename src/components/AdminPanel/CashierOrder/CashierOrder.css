@@ -3,6 +3,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    height: 100vh;
 }
 .cashierOrder>*{
     width: 100%;
@@ -25,3 +26,40 @@
     background-color: rgb(195, 195, 195);
     color: rgb(37, 37, 37);
 }
+
+.cashierOrder .page{
+    flex-grow: 1;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100%;
+    background-color:aquamarine;
+}
+.cashierOrder .page>*{
+    box-shadow: 5px 5px 4px #888;
+    padding: 10px;
+}
+.cashierOrder .orderList{
+    display: flex;
+    flex-direction: column;
+    max-height: 400px;
+    max-width: 500px;
+    background-color: azure;
+}
+.cashierOrder .orderList .listItem{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.cashierOrder .orderList .listItem .foodName{
+    width: 250px;
+}
+.cashierOrder .orderInfo{
+    background-color: azure;
+}
+.cashierOrder .orderInfo .cancelButton{
+  text-align: center;  
+  background-color: aqua;
+  cursor: pointer;
+}
+

@@ -21,8 +21,6 @@
     background-color: rgb(232, 230, 230);
 }
 .userMenuTable .counterText{
-    position: relative;
-    top:-0px;
     display: inline-block;
     min-width: 30px;
     text-align: center;
@@ -61,4 +59,62 @@
     cursor: auto;
     pointer-events: none;
     filter: opacity(0.2);
+}
+.orderListOverlay{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.651);
+    justify-content: flex-start;
+    align-items: center;
+    color: white;
+    z-index: 4;
+    user-select: none;
+}
+.orderListOverlay .closeButton{
+    position: relative;
+    left:40vw;
+    color: white;
+    padding: 4px;
+    height: 30px;
+    cursor: pointer;
+}
+.orderListOverlay .closeButton:hover{
+    background-color: red;
+}
+.orderList{
+    display: flex;
+    flex-direction: column;
+    max-height: 400px;
+    max-width: 500px;
+}
+.orderList .listItem{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.orderList .listItem .foodName{
+    width: 250px;
+}
+.orderListButton{
+    position: relative;
+    left:40vw;
+    padding: 5px;
+    background-color:azure ;
+    height: 20px;
+    color: rgb(0, 214, 214);
+}
+
+.orderList .confirmButton{
+    color: blueviolet;
+    background-color: antiquewhite;
+    text-align: center;
+    cursor: pointer;
+}
+
+.orderList .confirmButton:hover{
+    color:antiquewhite;
+    background-color: blueviolet;
 }

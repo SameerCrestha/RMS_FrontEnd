@@ -6,9 +6,9 @@ function UserPanel(props) {
     
     return (
         <div className='userPanel'>
-            <div className='menu'>
+            
             <MenuList/>
-            </div>
+            
         </div>
     );
 }

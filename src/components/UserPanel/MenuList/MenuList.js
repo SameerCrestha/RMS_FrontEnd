@@ -4,6 +4,8 @@ import './MenuList.css';
 import { Ring } from 'react-awesome-spinners';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import { toast } from 'react-toastify';
+
 function Row({item,orderList,setOrderList}){
   const [count,setCount]=useState(0);
   const [confirmed,setConfirmed]=useState(false);
@@ -56,10 +58,77 @@ function Section({index,header,items,orderList,setOrderList}){
     </>
   );
 
+}
+function OrderList({orderList,setOrdered,setOverlay}){
+  
+  const[total,setTotal]=useState(0);
+  const [note,setNote]=useState('');
+  const [table,setTable]=useState(0);
+  function postOrder(req){
+    const baseUrl=process.env.REACT_APP_BASE_URL;
+    const orderPrefix=process.env.REACT_APP_ORDER_PREFIX;
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    var raw = JSON.stringify(req);
+
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow'
+    };
+    fetch(`${baseUrl}//${orderPrefix}`, requestOptions)
+      .then(response => response.json())
+      .then(result =>{ toast.success("Order confirmed",{autoClose:3000});setOrdered(true)})
+      .catch(error => console.log('error', error));
   }
+  useEffect(()=>{
+    let sum=0;
+    orderList.forEach((el)=>{
+      sum+=el.food.food_price*el.quantity;
+    });
+    setTotal(sum);
+  },[orderList])
+  return(
+  <div className='orderListOverlay'>
+  <FontAwesomeIcon className='closeButton' icon="fa-xmark" onClick={()=>{setOverlay(false)}}/>
+    <div className='orderList'>
+    <div><label for="table">Select your table:</label>
+    <select id="table" name="table" onChange={e=>{setTable(e.target.value)}}>
+      <option value={1}>1</option>
+      <option value={2}>2</option>
+      <option value={3}>3</option>
+      <option value={4}>4</option>
+      <option value={5}>5</option>
+      <option value={6}>6</option>
+      <option value={7}>7</option>
+      <option value={8}>8</option>
+    </select></div>
+    Your order list:
+    {orderList.length===0?<div>Empty</div>:<>
+    {orderList.map(el=>{
+        return <div className='listItem'>
+      <div className='foodName'>{el.food.food_name}</div><div className='foodQuantity'>x{el.quantity}</div>
+      </div>
+    })}
+    <input onChange={(e)=>{setNote(e.target.value);}} placeholder='Note for chef'/>
+      </>
+    }
+    <div className='listItem'>
+      <div className='foodName'>Total</div><div className='foodQuantity'>Rs {total}</div>
+      </div>
+    <div className='confirmButton' onClick={()=>{if (total!==0)postOrder({items:orderList,table:table,note:note})}}>Confirm order</div>
+  </div>
+  </div>
+  );
+}
+
 function MenuList(props) {
+  const [ordered,setOrdered]=useState(false);
   const [orderList,setOrderList]=useState([]);
-  const[data,setData]=useState();//data format:[{header:"header",items:[{food_name:"momo",food_price:100},{}]},{}]  
+  const [overlay,setOverlay]=useState(false);
+  const[data,setData]=useState([]);//data format:[{header:"header",items:[{food_name:"momo",food_price:100},{}]},{}]  
   useEffect(()=>{
     const baseUrl=process.env.REACT_APP_BASE_URL;
     const foodPrefix=process.env.REACT_APP_FOOD_PREFIX;
@@ -98,12 +167,20 @@ function MenuList(props) {
     }
    getCategories().then(categories=>populateData(categories)).then(data=>setData(data));
   },[])
-  return(
-  !data?<div className='loadingDiv'><Ring/></div>:
-  <Table className='userMenuTable' borderless hover>
-    {data.map((el,index)=><Section index={index} header={el.header} items={el.items} orderList={orderList} setOrderList={setOrderList}/>)}
-  </Table>
-  );
+  
+  if(ordered){
+    return <div>Ordered</div>
+  } else if(data.length===0){
+      return <div className='loadingDiv'><Ring/></div>
+    }else{
+      return <>
+      {overlay?<OrderList orderList={orderList} setOrdered={setOrdered} setOverlay={setOverlay}/>:""}
+      <FontAwesomeIcon icon="fa-list" className='orderListButton' onClick={()=>{setOverlay(true)}}/>
+     <Table className='userMenuTable' borderless hover>
+       {data.map((el,index)=><Section index={index} header={el.header} items={el.items} orderList={orderList} setOrderList={setOrderList}/>)}
+     </Table>
+     </>
+    } 
 }
 
 export default MenuList;

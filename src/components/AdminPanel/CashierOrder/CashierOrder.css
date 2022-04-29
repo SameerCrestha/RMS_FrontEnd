@@ -1,0 +1,27 @@
+.cashierOrder{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.cashierOrder>*{
+    width: 100%;
+}
+
+.cashierOrder .tableSelect{
+    display: flex;
+    flex-direction: row;
+}
+
+.cashierOrder .tableSelect>*{
+    flex-grow: 1;
+    flex-basis: 0;
+    background-color: rgb(76, 50, 192);
+    color: #eee;
+    text-align: center;
+    cursor: pointer;
+}
+.cashierOrder .tableSelect>*:hover{
+    background-color: rgb(195, 195, 195);
+    color: rgb(37, 37, 37);
+}

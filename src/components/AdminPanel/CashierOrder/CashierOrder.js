@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { Ring } from 'react-awesome-spinners';
 import './CashierOrder.css'
 import { toast } from 'react-toastify';
-function Page({data,deleteOrder}){
-    function cancelHandler(){
-        deleteOrder("76").then(result=>{
+function Page({data,setStatusPaid}){
+    function paidHandler(){
+        setStatusPaid(data.order_id).then(result=>{
             toast.info(result.detail,{autoClose:2000});
+            setTimeout(()=>{window.location.reload();},3000)
         })
     }
     function getTotal(items){
@@ -39,7 +40,7 @@ function Page({data,deleteOrder}){
             <div>Note:{data.note}</div>
             <div>Order Date:{data.order_date}</div>
             <div>Status:{data.status}</div>
-            <div className='cancelButton' onClick={cancelHandler}>Cancel order</div>
+            <div className='cancelButton' onClick={paidHandler}>Set status paid</div>
         </div>
         </div>
     }
@@ -118,6 +119,21 @@ function CashierOrder(props) {
             .then(result => result)
             .catch(error => console.log('error', error));
     }
+    function setStatusPaid(id){
+        var myHeaders = new Headers();
+        myHeaders.append("Authorization", `Bearer ${token}`);
+
+        var requestOptions = {
+        method: 'PATCH',
+        headers: myHeaders,
+        redirect: 'follow'
+        };
+
+        return fetch(`${baseUrl}/${orderPrefix}/${id}/Paid`, requestOptions)
+        .then(response => response.json())
+        .then(result => result)
+        .catch(error => console.log('error', error));
+    }
     useEffect(()=>{
         getOrders().then(res=>{setData(res);setLoaded(true)});
     },[]);
@@ -126,7 +142,7 @@ function CashierOrder(props) {
     }else{
         return <div className='cashierOrder'>
             <TableSelect setTable={setTable} active={table}/>
-            <Page data={data.find(el=>el.table===table)} deleteOrder={deleteOrder}/>
+            <Page data={data.find(el=>el.table===table)} setStatusPaid={setStatusPaid}/>
         </div>
     }
     

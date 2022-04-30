@@ -1,0 +1,16 @@
+.home{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.home .text1 {
+    padding: 20px;
+    font-size: 27px;
+    font-family: 'Ms Madi', cursive;
+}
+
+.home .text2{
+    padding:20px;
+}

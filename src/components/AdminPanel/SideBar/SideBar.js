@@ -50,8 +50,10 @@ function SideBar(props) {
             <div className='button'><Link to='/admin'>Home</Link></div>
             {profile.current.staff.toLowerCase()==="cashier"?<div className='button'><Link to='/admin/cashierorder'>Orders</Link></div>:""}
             {profile.current.staff.toLowerCase()==="admin"?<div className='button'><Link to='/admin/menu'>Menu</Link></div>:""}
+            {profile.current.staff.toLowerCase()==="admin"?<div className='button'><Link to='/admin/register-user'>Register user</Link></div>:""}
             {profile.current.staff.toLowerCase()==="kitchen staff"?<div className='button'><Link to='/admin/kitchenorder'>Orders</Link></div>:""}
             {profile.current.staff.toLowerCase()==="inventory staff"?<div className='button'><Link to='/admin/inventory'>Inventory</Link></div>:""}
+            <div className='button'><Link to='/admin/change-password'>Change Password</Link></div>
             <div className="logoutButton button" onClick={()=>{localStorage.clear();navigate('/admin');window.location.reload(false);}}>Log Out</div>
         </>:<div className='loadingDiv'><Ring/></div>}
         </div>

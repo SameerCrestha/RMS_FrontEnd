@@ -1,0 +1,28 @@
+.registerUser{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.registerUser label{
+    padding: 4px;
+}
+
+.registerUser>*{
+    padding: 5px;
+    margin:6px 0;
+}
+
+.registerUser .button{
+    background-color: rgb(123, 250, 146);
+    color: black;
+    cursor: pointer;
+    user-select: none;
+    padding: 10px 20px;
+}
+.registerUser .button:hover{
+    background-color: aquamarine;
+}

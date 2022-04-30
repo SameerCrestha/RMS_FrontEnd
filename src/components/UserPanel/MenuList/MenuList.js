@@ -95,7 +95,7 @@ function OrderList({orderList,setOrdered,setOverlay}){
   <FontAwesomeIcon className='closeButton' icon="fa-xmark" onClick={()=>{setOverlay(false)}}/>
     <div className='orderList'>
     <div><label for="table">Select your table:</label>
-    <select id="table" name="table" onChange={e=>{setTable(e.target.value)}}>
+    <select defaultValue={1} id="table" name="table" onChange={e=>{setTable(e.target.value)}}>
       <option value={1} selected>1</option>
       <option value={2}>2</option>
       <option value={3}>3</option>

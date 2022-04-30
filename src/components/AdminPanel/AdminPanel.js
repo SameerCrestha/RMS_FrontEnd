@@ -8,6 +8,8 @@ import Menu from './Menu/Menu'
 import MenuList from '../UserPanel/MenuList/MenuList';
 import CashierOrder from './CashierOrder/CashierOrder';
 import KitchenOrder from './KitchenOrder/KitchenOrder';
+import RegisterUser from './RegisterUser/RegisterUser';
+import ChangePassword from './ChangePassword/ChangePassword'
 
 function AdminPanel(props) {
     return (
@@ -22,6 +24,8 @@ function AdminPanel(props) {
                 <Route path='/inventory' element={<Inventory/>}/>
                 <Route path='/' element={<Home/>}/>
                 <Route path='/view-order' element={<MenuList/>}/>
+                <Route path='/register-user' element={<RegisterUser/>}/>
+                <Route path='/change-password' element={<ChangePassword/>}/>
             </Routes>
         </div>
         </div>
